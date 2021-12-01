@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="css/style.css" />
+    <title>Home</title>    
+</head>
+<body>
+    
+        <br>
+        <table align="left" id="primerMatriz">
+                 
+        </table>
+
+        <table align="right" id="segundaMatriz">
+                 
+        </table>
+
+        <br><br><br><br>
+        <h1 align="center">X</h1>
+
+        
+
+        <!-- SCRIPTS -->
+        <script src="js/numeros.js"></script>
+        <script src="js/jquery.js"></script>       
+        <script type="text/javascript">
+
+            jQuery(function ($) {       
+                var n = prompt("Inserta el valor del elemento");
+                var m = prompt("Inserta el valor del elemento");
+                dibujaMatriz(n,m, generaNumeros(n,m), '#primerMatriz');
+                dibujaMatriz(n,m, generaNumeros(n,m), '#segundaMatriz');
+
+            });
+
+        </script>
+
+</body>
+
+</html>

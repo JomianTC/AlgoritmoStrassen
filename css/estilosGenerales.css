@@ -1,0 +1,37 @@
+/*
+	Aqui van las tipografias y los colores que vamos a usar
+	en caso de otra cosa que se necesite agreguenle, solamente
+	se ponen cosas que se usen en todos los css si o si
+*/
+
+@font-face {
+  font-family: QuicksandRegular;
+  src: url('../recursos/fuente/QuicksandRegular.ttf')
+  		 format('truetype');
+}
+
+@font-face {
+  font-family: QuicksandLigth;
+  src: url('../recursos/fuente/QuicksandLight.ttf')
+  		 format('truetype');
+}
+
+@font-face {
+  font-family: QuicksandBold;
+  src: url('../recursos/fuente/QuicksandBold.ttf')
+  		 format('truetype');
+}
+
+:root {
+
+	--stratos: #001B48;
+	--RBlue: #02457A;
+	--BBlue: #018ABE;
+	--Mglory: #97CADB;
+	--Botticelli: #D6EBEE;
+}
+
+*{
+	margin: 0;
+	padding: 0;
+}
