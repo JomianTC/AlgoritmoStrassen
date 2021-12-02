@@ -9,18 +9,18 @@ entrada.addEventListener("keyup", function(event){
 	}
 });
 
-
-
-function crearMatrices (tabla){
+function crearMatrices (tabla, matriz, j){
 
 	var fila = document.createElement("tr");
 
 	tabla.appendChild(fila);
 
-	for(i = 0; i < entrada.value; i++){
+	for(var i = 0; i < entrada.value; i++){
 
 		var celda = document.createElement("td");
-		var texto = document.createTextNode((Math.floor(Math.random() * 90))+10);
+		var valorRandom = (Math.floor(Math.random() * 90)) + 10;
+		var texto = document.createTextNode(valorRandom);
+		matriz[j][i] = valorRandom;
 		celda.appendChild(texto);
 		fila.appendChild(celda);
 	}
@@ -48,16 +48,28 @@ function iniciarAnimacion(){
 		entrada.remove();
 		
 		var tabla = document.getElementById("tabla1");
+		
+		var matrizA = [];
+		var matrizB = [];
 
-		for (j = 0; j < entrada.value; j++){
+		for (var w = 0; w < entrada.value; w++) {
+			matrizA[w] = new Array(entrada.value);
+			matrizB[w] = new Array(entrada.value);
+		}
 
-			crearMatrices(tabla);
+		for (var j = 0; j < entrada.value; j++){
+
+			crearMatrices(tabla, matrizA, j);
 		}
 
 		tabla = document.getElementById("tabla2");
-		for (j = 0; j < entrada.value; j++){
 
-			crearMatrices(tabla);
+		for (var j = 0; j < entrada.value; j++){
+
+			crearMatrices(tabla, matrizB, j);
 		}
+
+		console.log(matrizA);
+		console.log(matrizB);
 	}
 }
