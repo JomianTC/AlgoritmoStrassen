@@ -136,9 +136,11 @@ input {
 
     align-items: center;
     justify-content: center;
+
+    margin-top: 80px;
 }
 
-#pseudocodigo{
+#pseudocodigo, #operaciones{
 
     opacity: 0;
 }
