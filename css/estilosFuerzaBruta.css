@@ -18,10 +18,12 @@ body{
 }
 
 h1{
+
     font-family: QuicksandRegular;
 }
 
-h2{
+h2, pre{
+
     font-family: QuicksandLigth;
 }
 
@@ -34,7 +36,9 @@ h1, h2{
     margin: 5% 0%;
 }
 
-input{
+#input{
+
+    font-family: QuicksandRegular;
 
     text-align: center;
     width: 200px;
@@ -51,12 +55,12 @@ input{
     font-size: 150%;
 }
 
-input::placeholder{
+#input::placeholder{
 
     color: var(--BBlue);
 }
 
-input:hover{
+#input:hover{
 
     background-color: var(--stratos);
 }
@@ -69,23 +73,82 @@ input:hover{
 #divTabla{
 
     display: flex;
+
+    align-items: center;
+    justify-content: center;
 }
 
-td {
+input {
 
     border: solid var(--stratos) 0.1px;
     border-radius: 7px;
 
-    padding: 5px 10px;
-
     background: radial-gradient(var(--BBlue), var(--RBlue));
 
     font-family: QuicksandLigth;
-    font-size: 30px;
+    font-size: 22px;
+    color: var(--Botticelli);
+
+    width: 40px;
+    height: 40px;
+
+    text-align: center;
+}
+
+#matrisA, #matrisB {
+
+    margin: 0px 25px;
+}
+
+#divBoton2{
+
+    visibility: hidden;
+}
+
+#boton2{
+
+    font-family: QuicksandRegular;
+    font-size: 25px;
+    color: var(--BBlue);
+
+    background-color: transparent;
+    border: none;
+    border-radius: 20px;
+
+    font-family: ;
+
+    width: 100px;
+    height: 50px;
+
+    margin: 20px 0px;
+
+    transition: ease-out 0.3s;
+}
+
+#boton2:hover{
+
+    background-color: var(--stratos);
+}
+
+#divCosas{
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+}
+
+#pseudocodigo{
+
+    opacity: 0;
+}
+
+.codigoFacilito{
+
+    font-family: QuicksandBold;
+    font-size: 20px;
+
     color: var(--Botticelli);
 }
 
-.matrices{
 
-    margin: 0px 50px;
-}
