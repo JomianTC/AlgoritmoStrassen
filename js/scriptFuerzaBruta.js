@@ -14,6 +14,10 @@ var matrizA = [];
 var matrizB = [];
 var matrizR = [];
 
+var matrizAInt = [];
+var matrizBInt = [];
+var matrizRInt = [];
+
 function crearMatrices (){
 
 	if (entrada.value > 7 || entrada.value < 2) {
@@ -85,16 +89,16 @@ function crearMatrices (){
 			}
 		}
 
-		var boton2 = document.getElementById("divBoton2");
-		boton2.style.visibility = 'visible';
+		selectHTML = document.getElementById("divBoton2");
+		var boton2 = document.createElement("button");
+		boton2.id = "boton2";
+		boton2.setAttribute("onClick", "animacion()");
+		boton2.appendChild(document.createTextNode("Iniciar"));
+		selectHTML.appendChild(boton2);
 	}
 }
 
 function animacion (){
-
-	var matrizAInt = [];
-	var matrizBInt = [];
-	var matrizRInt = [];
 
 	for (var w = 0; w < entrada.value; w++) {
 			matrizAInt[w] = new Array(entrada.value);
@@ -110,6 +114,24 @@ function animacion (){
 	}
 
 	if (comprobacion(matrizAInt, matrizBInt)) {
+
+		//Inicializamos la mtriz resutlado en 0
+		for (var x = 0; x < entrada.value; x++){
+			for (var y = 0; y < entrada.value; y++){
+					matrizRInt[x][y] = 0;
+			}
+		}
+
+		for (var x = 0; x < entrada.value; x++){
+			for (var y = 0; y < entrada.value; y++){
+				for (var z = 0; z < entrada.value; z++){
+					matrizRInt[x][y] = matrizRInt[x][y] + (matrizAInt[x][z] * matrizBInt[z][y]);
+				}
+			}
+		}
+
+		var boton2 = document.getElementById("divBoton2");
+		boton2.remove();
 
 		//obtenemos la posicion donde queremos agregar el contenido
 		var selectHTML = document.getElementById("pseudocodigo");
@@ -136,49 +158,44 @@ function animacion (){
 
 		}
 
-		//Inicializamos la mtriz resutlado en 0
-		for (var x = 0; x < entrada.value; x++){
-			for (var y = 0; y < entrada.value; y++){
-					matrizRInt[x][y] = 0;
-			}
-		}
-
-		for (var x = 0; x < entrada.value; x++){
-			for (var y = 0; y < entrada.value; y++){
-				for (var z = 0; z < entrada.value; z++){
-					matrizRInt[x][y] = matrizRInt[x][y] + (matrizAInt[x][z] * matrizBInt[z][y]);
-				}
-			}
-		}
-
-		//Animacion en si
-		var boton2 = document.getElementById("boton2");
-		boton2.remove();
-
 		unfade(selectHTML, 50);
 
-		delay(function(){
-    		wait(3000);
-		}, 3000 );
+		selectHTML = document.getElementById("operaciones");
 
-		var x = 0;
-		var y = 0;
+		for (var i = 0; i <= entrada.value; i++) {
 
-		myLoopX(x, y);
-		myLoopY(x, y);
+			var operacion = document.createElement("p");
+			operacion.className = "oper";
+			operacion.id = "OP" + i + "";
 
-		selectHTML = document.getElementById("Operaciones");
-		var op = document.createElement("p");
-		op.className = "codigoFacilito";
-		op.id = "cambiante";
+			operacion.appendChild(document.createTextNode("Operacion" + i + ""));
+			selectHTML.appendChild(operacion);
+		}
+		
+		unfade(selectHTML, 50);
+		
+		selectHTML = document.getElementById("matrisR");
 
-		selectHTML.appendChild(op);
+		//Creamos un ciclo para crear las matrices
+		for(var i = 0; i < entrada.value; i++){
 
-		var opeText = "";
+			var divR = document.createElement("div");
+			selectHTML.appendChild(divR);
 
-		var opePantalla = document.createTextNode(opeText);
-		op.appendChild(opeText);
+			for (var j = 0; j < entrada.value; j++){
 
+				var newR = document.createElement("input");
+				newR.type = "text";
+				newR.className = "TLR" + i;
+				newR.id = "R" + i + j;
+				matrizR[i][j] = newR;
+
+				divR.appendChild(newR);
+
+			}
+		}
+
+		unfade(selectHTML, 50);
 		
 	}
 }
@@ -264,7 +281,7 @@ function myLoopY(x, y, tiempo){
 
 
 
-//Multiplicacion de matrices
+/*Multiplicacion de matrices
 
 for (var x = 0; x < entrada.value; x++){
 		for (var y = 0; y < entrada.value; y++){
@@ -274,3 +291,27 @@ for (var x = 0; x < entrada.value; x++){
 		}
 	}
 
+unfade(selectHTML, 50);
+		delay(function(){
+    		wait(3000);
+		}, 3000 );
+
+		var x = 0;
+		var y = 0;
+
+		myLoopX(x, y);
+		myLoopY(x, y);
+
+		selectHTML = document.getElementById("Operaciones");
+		var op = document.createElement("p");
+		op.className = "codigoFacilito";
+		op.id = "cambiante";
+
+		selectHTML.appendChild(op);
+
+		var opeText = "";
+
+		var opePantalla = document.createTextNode(opeText);
+		op.appendChild(opeText);
+
+*/

@@ -100,11 +100,6 @@ input {
     margin: 0px 25px;
 }
 
-#divBoton2{
-
-    visibility: hidden;
-}
-
 #boton2{
 
     font-family: QuicksandRegular;
@@ -140,12 +135,14 @@ input {
     margin-top: 80px;
 }
 
-#pseudocodigo, #operaciones{
+#pseudocodigo, #operaciones, #matrisR{
 
     opacity: 0;
+
+    margin: 0px 30px;
 }
 
-.codigoFacilito{
+.codigoFacilito, .oper{
 
     font-family: QuicksandBold;
     font-size: 20px;
