@@ -83,7 +83,7 @@ input {
     border: solid var(--stratos) 0.1px;
     border-radius: 7px;
 
-    background: radial-gradient(var(--BBlue), var(--RBlue));
+    background: var(--BBlue);
 
     font-family: QuicksandLigth;
     font-size: 22px;
@@ -120,7 +120,27 @@ input {
     transition: ease-out 0.3s;
 }
 
-#boton2:hover{
+#boton3, #boton31{
+
+    font-family: QuicksandRegular;
+    font-size: 25px;
+    color: var(--BBlue);
+
+    background-color: transparent;
+    border: none;
+    border-radius: 20px;
+
+    font-family: ;
+
+    width: 130px;
+    height: 50px;
+
+    margin: 30px 10px;
+
+    transition: ease-out 0.3s;
+}
+
+#boton2:hover, #boton3:hover, #boton31:hover{
 
     background-color: var(--stratos);
 }
@@ -132,17 +152,23 @@ input {
     align-items: center;
     justify-content: center;
 
-    margin-top: 80px;
+    margin-top: 50px;
+    margin-bottom: 40px;
 }
 
-#pseudocodigo, #operaciones, #matrisR{
+#pseudocodigo, #matrisR{
 
     opacity: 0;
 
-    margin: 0px 30px;
+    margin: 0px 40px;
 }
 
-.codigoFacilito, .oper{
+#operaciones{
+
+    margin: 0px 40px;
+}
+
+.codigoFacilito{
 
     font-family: QuicksandBold;
     font-size: 20px;
@@ -150,4 +176,20 @@ input {
     color: var(--Botticelli);
 }
 
+.oper{
 
+    font-family: QuicksandBold;
+    font-size: 18px;
+
+    color: var(--Botticelli);
+}
+
+#matrisA, #matrisB, #divBoton2, #divBoton3{
+
+    opacity: 0;
+}
+
+#OP0, #OP1, #OP2, #OP3, #OP4, #OP5, #OP6, #OP7{
+
+    opacity: 0;
+} 

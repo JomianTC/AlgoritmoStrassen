@@ -18,6 +18,10 @@ var matrizAInt = [];
 var matrizBInt = [];
 var matrizRInt = [];
 
+var operacionTexto = [];
+
+var textoBoton3;
+
 function crearMatrices (){
 
 	if (entrada.value > 7 || entrada.value < 2) {
@@ -49,6 +53,10 @@ function crearMatrices (){
 		//Obtenemos el ID donde tendremos la primera matriz
 		var selectHTML = document.getElementById("matrisA");
 
+		var tituloMatrizA = document.createElement("h2");
+		tituloMatrizA.appendChild(document.createTextNode("Matriz A"));
+		selectHTML.appendChild(tituloMatrizA);
+
 		//Creamos un ciclo para crear las matrices
 		for(var i = 0; i < entrada.value; i++){
 
@@ -68,7 +76,13 @@ function crearMatrices (){
 			}
 		}
 
+		unfade(selectHTML, 20);
+
 		selectHTML = document.getElementById("matrisB");
+
+		var tituloMatrizB = document.createElement("h2");
+		tituloMatrizB.appendChild(document.createTextNode("Matriz B"));
+		selectHTML.appendChild(tituloMatrizB);
 
 		//Creamos un ciclo para crear las matrices
 		for(var i = 0; i < entrada.value; i++){
@@ -89,12 +103,16 @@ function crearMatrices (){
 			}
 		}
 
+		unfade(selectHTML, 20);
+
 		selectHTML = document.getElementById("divBoton2");
 		var boton2 = document.createElement("button");
 		boton2.id = "boton2";
 		boton2.setAttribute("onClick", "animacion()");
 		boton2.appendChild(document.createTextNode("Iniciar"));
 		selectHTML.appendChild(boton2);
+
+		unfade(selectHTML, 20);
 	}
 }
 
@@ -146,9 +164,9 @@ function animacion (){
 			selectHTML.appendChild(pseudo);
 
 			var textCode = [
-				"for i = 1 to n do",
-				"for j = 1 to n do",
-				"for k = 1 to n do",
+				"for i = 0 to n do",
+				"for j = 0 to n do",
+				"for k = 0 to n do",
 				"C[i,j] = C[i,j] + A[i,k]*B[k,j];"
 			]
 
@@ -168,13 +186,16 @@ function animacion (){
 			operacion.className = "oper";
 			operacion.id = "OP" + i + "";
 
-			operacion.appendChild(document.createTextNode("Operacion" + i + ""));
+			operacionTexto[i] = document.createTextNode("A");
+			operacion.appendChild(operacionTexto[i]);
 			selectHTML.appendChild(operacion);
 		}
 		
-		unfade(selectHTML, 50);
-		
 		selectHTML = document.getElementById("matrisR");
+
+		var tituloMatrizR = document.createElement("h2");
+		tituloMatrizR.appendChild(document.createTextNode("Matriz C"));
+		selectHTML.appendChild(tituloMatrizR);
 
 		//Creamos un ciclo para crear las matrices
 		for(var i = 0; i < entrada.value; i++){
@@ -196,7 +217,122 @@ function animacion (){
 		}
 
 		unfade(selectHTML, 50);
-		
+
+		selectHTML = document.getElementById("divBoton3");
+
+		var boton3 = document.createElement("button");
+		boton3.id = "boton3";
+		boton3.setAttribute("onClick", "creacion()");
+		textoBoton3 = document.createTextNode("Siguiente")
+		boton3.appendChild(textoBoton3);
+		selectHTML.appendChild(boton3);
+
+		unfade(selectHTML, 50);
+	}
+}
+
+var primeraVez = true;
+
+var x = 0, y = 0, z= 0, f = 0, ocultar = false, denuvo = false;
+var gradiente = "var(--BBlue)";
+var oscuro = "var(--stratos)";
+var boton31, boton3A;
+var tiempo = 20;
+
+function creacion (){
+
+	if (ocultar) {
+
+		var ocultacion;
+
+		for(var k = 0; k <= entrada.value; k++){
+
+			ocultacion = document.getElementById("OP" + k + "");
+
+			ocultacion.style.opacity = 0;
+
+			ocultar = false
+		}
+
+		for (var o = 0; o < entrada.value; o++){
+			for (var p = 0; p < entrada.value; p++){
+				matrizA[o][p].style.background = gradiente;
+				matrizB[o][p].style.background = gradiente;
+			}
+		}
+	}
+
+	if (denuvo) {
+
+		textoBoton3.nodeValue = "Siguiente";
+		boton31.remove();
+
+		for (var o = 0; o < entrada.value; o++){
+			for (var p = 0; p < entrada.value; p++){
+				matrizR[o][p].value = "";
+			}
+		}
+	}
+
+	var selectHTML = document.getElementById("OP" + f + "");
+
+	if (entrada.value == f) {
+
+		operacionTexto[f].nodeValue = `MatrizC[${x}][${y}] = ${matrizRInt[x][y]}`;
+		unfade(selectHTML, tiempo);
+
+		matrizR[x][y].value = matrizRInt[x][y]
+
+		f = 0;
+		z = 0;
+
+		if ((entrada.value - 1) == y) {
+
+			y = 0;
+
+			if ((entrada.value - 1) == x) {
+
+				x = 0;
+
+				selectHTML = document.getElementById("divBoton3");
+
+				boton31 = document.createElement("button");
+				boton31.id = "boton31";
+				boton31.setAttribute("onClick", "page()");
+				boton31.appendChild(document.createTextNode("Recargar"));
+				selectHTML.appendChild(boton31);
+
+				boton3A = document.getElementById("boton3");
+				textoBoton3.nodeValue = "Reiniciar";
+
+				unfade(selectHTML, tiempo);
+
+				denuvo = true;
+			}
+			else{
+
+				x++;
+			}
+		}
+		else{
+
+			y++;
+		}
+
+		ocultar = true;
+	}
+	else{
+
+		operacionTexto[f].nodeValue = `matrizA[${x}][${z}] * matrizB[${z}][${y}] = ` + matrizAInt[x][z] + " * " + matrizBInt[z][y] + " = " + matrizAInt[x][z]*matrizBInt[z][y] + "";
+		matrizA[x][z].style.background = oscuro;
+		matrizB[z][y].style.background = oscuro;
+
+		unfade(selectHTML, tiempo);
+		unfade(matrizA[x][z], tiempo);
+		unfade(matrizB[z][y], tiempo);
+
+		f++;
+		z++;
 	}
 }
 
@@ -238,8 +374,6 @@ function unfade(element, time) {
 
     var op = 0.1;
 
-    element.style.display = 'block';
-
     var timer = setInterval(function () {
 
 		if (op >= 1){
@@ -278,6 +412,10 @@ function myLoopY(x, y, tiempo){
 		}
 	}, tiempo)
 }
+
+function page(){
+    window.location.reload();
+} 
 
 
 
