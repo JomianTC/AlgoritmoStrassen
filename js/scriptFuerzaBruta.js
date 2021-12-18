@@ -241,7 +241,7 @@ var tiempo = 20;
 
 function creacion (){
 
-	if (ocultar) {
+	if (ocultar) { 
 
 		var ocultacion;
 
@@ -272,6 +272,8 @@ function creacion (){
 				matrizR[o][p].value = "";
 			}
 		}
+
+		denuvo = false;
 	}
 
 	var selectHTML = document.getElementById("OP" + f + "");
