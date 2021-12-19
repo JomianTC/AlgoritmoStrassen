@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Divide y venceras</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <!-- <link rel="stylesheet" href="/Prototipo/CSS/style.css"> Laptop -->
+  <link rel="stylesheet" href="css/estilos.css">
+  <link rel="stylesheet" href="css/estilosGenerales.css">
+  <link rel="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" type="text/css"/>
+</head>
+
+<body>
+
+  <h2 class="titulo">Divide and Conquer - Algoritmo de Strassen</h2>
+
+  <table class="matrizA" id="matrizA">
+    <tr>
+      <td style="padding:15px 15px 15px 15px;">1</td>
+      <td style="padding:15px 15px 15px 15px;">2</td>
+      <td style="padding:15px 15px 15px 15px;">3</td>
+      <td style="padding:15px 15px 15px 15px;">4</td>
+    </tr>
+    <tr>
+      <td style="padding:15px 15px 15px 15px;">2</td>
+      <td style="padding:15px 15px 15px 15px;">3</td>
+      <td style="padding:15px 15px 15px 15px;">4</td>
+      <td style="padding:15px 15px 15px 15px;">5</td>
+    </tr>
+    <tr>
+      <td style="padding:15px 15px 15px 15px;">3</td>
+      <td style="padding:15px 15px 15px 15px;">4</td>
+      <td style="padding:15px 15px 15px 15px;">5</td>
+      <td style="padding:15px 15px 15px 15px;">6</td>
+    </tr>
+    <tr>
+      <td style="padding:15px 15px 15px 15px;">4</td>
+      <td style="padding:15px 15px 15px 15px;">5</td>
+      <td style="padding:15px 15px 15px 15px;">6</td>
+      <td style="padding:15px 15px 15px 15px;">7</td>
+    </tr>
+  </table>
+
+  <table class="subMatrizA" id="subMatrizA" style="display: none;">
+    <tr>
+      <td style="padding:15px 15px 15px 15px;">1</td>
+      <td style="padding:15px 15px 15px 15px;">2</td>
+    </tr>
+    <tr>
+      <td style="padding:15px 15px 15px 15px;">2</td>
+      <td style="padding:15px 15px 15px 15px;">3</td>
+    </tr>
+  </table>
+
+  <table class="matrizB" id="matrizB">
+    <tr>
+      <td style="padding:15px 15px 15px 15px;">5</td>
+      <td style="padding:15px 15px 15px 15px;">4</td>
+      <td style="padding:15px 15px 15px 15px;">3</td>
+      <td style="padding:15px 15px 15px 15px;">2</td>
+    </tr>
+    <tr>
+      <td style="padding:15px 15px 15px 15px;">2</td>
+      <td style="padding:15px 15px 15px 15px;">3</td>
+      <td style="padding:15px 15px 15px 15px;">4</td>
+      <td style="padding:15px 15px 15px 15px;">5</td>
+    </tr>
+    <tr>
+      <td style="padding:15px 15px 15px 15px;">3</td>
+      <td style="padding:15px 15px 15px 15px;">4</td>
+      <td style="padding:15px 15px 15px 15px;">5</td>
+      <td style="padding:15px 15px 15px 15px;">6</td>
+    </tr>
+    <tr>
+      <td style="padding:15px 15px 15px 15px;">3</td>
+      <td style="padding:15px 15px 15px 15px;">5</td>
+      <td style="padding:15px 15px 15px 15px;">7</td>
+      <td style="padding:15px 15px 15px 15px;">8</td>
+    </tr>
+  </table>
+
+  <table class="subMatrizB" id="subMatrizB" style="display: none;">
+    <tr>
+      <td style="padding:15px 15px 15px 15px;">5</td>
+      <td style="padding:15px 15px 15px 15px;">4</td>
+    </tr>
+    <tr>
+      <td style="padding:15px 15px 15px 15px;">2</td>
+      <td style="padding:15px 15px 15px 15px;">3</td>
+    </tr>
+  </table>
+
+  <table class="subResultado" id="subResultado"  style="display: none;">
+    <tr>
+      <th style="padding:15px 15px 15px 15px;">ae+bg</th>
+      <th style="padding:15px 15px 15px 15px;">af+bh</th>
+    </tr>
+    <tr>
+      <th style="padding:15px 15px 15px 15px;">ce+dg</th>
+      <th style="padding:15px 15px 15px 15px;">cf+dh</th>
+    </tr>
+  </table>
+
+  <table class="Resultado" id="Resultado"  style="display: none;">
+    <tr>
+      <th style="padding:15px 15px 15px 15px;">9+??</th>
+      <th style="padding:15px 15px 15px 15px;">10+??</th>
+      <th style="padding:15px 15px 15px 15px;">??+??</th>
+      <th style="padding:15px 15px 15px 15px;">??+??</th>
+    </tr>
+    <tr>
+      <th style="padding:15px 15px 15px 15px;">16+??</th>
+      <th style="padding:15px 15px 15px 15px;">17+??</th>
+      <th style="padding:15px 15px 15px 15px;">??+??</th>
+      <th style="padding:15px 15px 15px 15px;">??+??</th>
+    </tr>
+    <tr>
+      <th style="padding:15px 15px 15px 15px;">??+??</th>
+      <th style="padding:15px 15px 15px 15px;">??+??</th>
+      <th style="padding:15px 15px 15px 15px;">??+??</th>
+      <th style="padding:15px 15px 15px 15px;">??+??</th>
+    </tr>
+    <tr>
+      <th style="padding:15px 15px 15px 15px;">??+??</th>
+      <th style="padding:15px 15px 15px 15px;">??+??</th>
+      <th style="padding:15px 15px 15px 15px;">??+??</th>
+      <th style="padding:15px 15px 15px 15px;">??+??</th>
+    </tr>
+  </table>
+
+  <div class="a" id="a" style="display: none;">a</div>
+  <div class="b" id="b" style="display: none;">b</div>
+  <div class="c" id="c" style="display: none;">c</div>
+  <div class="d" id="d" style="display: none;">d</div>
+
+  <div class="aa" id="aa" style="display: none;">a</div>
+  <div class="bb" id="bb" style="display: none;">b</div>
+  <div class="cc" id="cc" style="display: none;">c</div>
+  <div class="dd" id="dd" style="display: none;">d</div>
+
+  <div class="e" id="e" style="display: none;">e</div>
+  <div class="f" id="f" style="display: none;">f</div>
+  <div class="g" id="g" style="display: none;">g</div>
+  <div class="h" id="h" style="display: none;">h</div>
+
+  <div class="ee" id="ee" style="display: none;">e</div>
+  <div class="ff" id="ff" style="display: none;">f</div>
+  <div class="gg" id="gg" style="display: none;">g</div>
+  <div class="hh" id="hh" style="display: none;">h</div>
+
+  <div class="squareAG" id="cuadroFrontA" style="display: none;"></div>
+  <div class="squareBG" id="cuadroFrontB" style="display: none;"></div>
+
+  <div class="squareCh1" id="cuadroCh1" style="display: none;"></div>
+  <div class="squareCh2" id="cuadroCh2" style="display: none;"></div>
+  <div class="squareCh3" id="cuadroCh3" style="display: none;"></div>
+  <div class="squareCh4" id="cuadroCh4" style="display: none;"></div>
+
+  <div class="squareChb1" id="cuadroChb1" style="display: none;"></div>
+  <div class="squareChb2" id="cuadroChb2" style="display: none;"></div>
+  <div class="squareChb3" id="cuadroChb3" style="display: none;"></div>
+  <div class="squareChb4" id="cuadroChb4" style="display: none;"></div>
+
+  <div class="squareChsub1" id="squareChsub1" style="display: none;"></div>
+  <div class="squareChsub2" id="squareChsub2" style="display: none;"></div>
+
+  <div class="squareAsubCh1" id="squareAsubCh1" style="display: none;"></div>
+  <div class="squareAsubCh2" id="squareAsubCh2" style="display: none;"></div>
+  <div class="squareAsubCh3" id="squareAsubCh3" style="display: none;"></div>
+  <div class="squareAsubCh4" id="squareAsubCh4" style="display: none;"></div>
+
+  <div class="squareBsubCh1" id="squareBsubCh1" style="display: none;"></div>
+  <div class="squareBsubCh2" id="squareBsubCh2" style="display: none;"></div>
+  <div class="squareBsubCh3" id="squareBsubCh3" style="display: none;"></div>
+  <div class="squareBsubCh4" id="squareBsubCh4" style="display: none;"></div>
+
+  <div class="squareChR1" id="squareChR1" style="display: none;"></div>
+  <div class="squareChR2" id="squareChR2" style="display: none;"></div>
+  <div class="squareChR3" id="squareChR3" style="display: none;"></div>
+  <div class="squareChR4" id="squareChR4" style="display: none;"></div>
+
+  <div class="squareChR1f" id="squareChR1f" style="display: none;"></div>
+  <div class="squareChR2f" id="squareChR2f" style="display: none;"></div>
+  <div class="squareChR3f" id="squareChR3f" style="display: none;"></div>
+  <div class="squareChR4f" id="squareChR4f" style="display: none;"></div>
+
+  <div class="margenMatriz" id="margenMatriz"></div>
+
+  <div class="codigo" id="codigo" style="display: none;">
+    <h4>Funcion strassen(a,b){</h4>
+    <h6>a, b, c, d = separar(A)</h6>
+    <h6>e, f, g, h = separar(B)</h6>
+    <h6>ae = strassen(a,e)</h6>
+    <h6>bg = strassen(b,g)</h6>
+    <h6>af = strassen(a,f)</h6>
+    <h6>bh = strassen(b,h)</h6>
+    <h6>ce = strassen(c,e)</h6>
+    <h6>dg = strassen(d,g)</h6>
+    <h6>cf = strassen(c,f)</h6>
+    <h6>dh = strassen(d,h)</h6>
+    <h6>c11 = p1 + p2 - p3 + p4</h6>
+    <h6>c12 = p5 + p3</h6>
+    <h6>c21 = p6 + p2</h6>
+    <h6>c22 = p5 + p1 - p6 - p7</h6>
+    <h6>c = np.vstack((np.hstack((c11,c12)), np.hstack((c21,c22))))}</h6>
+  </div>
+
+  <div class="codigo2" id="codigo2" style="display: none;">
+    <h4>Funcion separar(matriz){</h4>
+    <h6>Return matriz[n/2, n/2],</h6>
+    <h6>       matriz[n/2, n/2],</h6>
+    <h6>       matriz[n/2, n/2],</h6>
+    <h6>       matriz[n/2, n/2],</h6>
+    <h4>}</h4>
+  </div>
+
+  <div class="cuadroCodigo" id="cuadroCodigo1" style="display: none;"></div>
+  <div class="cuadroCodigo2" id="cuadroCodigo2" style="display: none;"></div>
+  <div class="cuadroCodigoFinal" id="cuadroCodigoFinal" style="display: none;"></div>
+
+  <button class="boton" id="siguiente">siguiente</button>
+      
+
+   <!--  <div class="square" id="cuadro">5</div> -->
+
+   <!-- SCRIPTS -->
+
+        <script src="js/jquery.js"></script>  
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+        
+
+        <script>
+
+          var paso = 0;
+
+          jQuery(function ($) {   
+
+            $('#siguiente').on('click', function(e){
+
+              switch (paso){
+                case 0:
+                  $("#cuadroFrontA").fadeIn();
+                  $("#codigo").fadeIn();
+                  $("#cuadroCodigo1").fadeIn();
+                break;
+                case 1:
+                  $("#matrizA, #cuadroFrontA").animate({'left' : '950px'});
+                  $("#codigo").fadeOut();
+                  $("#cuadroCodigo1").fadeOut();
+                  $("#codigo2").fadeIn();
+                  $("#cuadroCodigo2").fadeIn();
+                break;
+                case 2:
+                  $("#cuadroFrontA").fadeOut();
+                  $("#cuadroCh1").fadeIn();
+                  $("#cuadroCh2").fadeIn();
+                  $("#cuadroCh3").fadeIn();
+                  $("#cuadroCh4").fadeIn();
+                break;
+                case 3:
+                  $("#matrizA").animate({'left' : '100px'});
+                  $("#cuadroCh1").animate({'left' : '100px'});
+                  $("#cuadroCh2").animate({'left' : '180px'});
+                  $("#cuadroCh3").animate({'left' : '180px'});
+                  $("#cuadroCh4").animate({'left' : '100px'});
+                  $("#cuadroFrontB").fadeIn();
+                  $("#a").fadeIn();
+                  $("#b").fadeIn();
+                  $("#c").fadeIn();
+                  $("#d").fadeIn();
+                  $("#codigo2").fadeOut();
+                  $("#cuadroCodigo2").fadeOut();
+                  $("#codigo").fadeIn();
+                  $("#cuadroCodigo1").fadeIn();
+                  $("#cuadroCodigo1").animate({'top' : '355px'});
+                break;
+                case 4:
+                  $("#matrizB").animate({'left' : '950px'});
+                  $("#cuadroFrontB").animate({'left' : '950px'});
+                  $("#codigo").fadeOut();
+                  $("#cuadroCodigo1").fadeOut();
+                  $("#codigo2").fadeIn();
+                  $("#cuadroCodigo2").fadeIn();
+                break;
+                case 5:
+                  $("#cuadroFrontB").fadeOut();
+                  $("#cuadroChb1").fadeIn();
+                  $("#cuadroChb2").fadeIn();
+                  $("#cuadroChb3").fadeIn();
+                  $("#cuadroChb4").fadeIn();
+                break;
+                case 6:
+                  $("#matrizB").animate({'left' : '350px'});
+                  $("#cuadroChb1").animate({'left' : '350px'});
+                  $("#cuadroChb2").animate({'left' : '430px'});
+                  $("#cuadroChb3").animate({'left' : '430px'});
+                  $("#cuadroChb4").animate({'left' : '350px'});
+                  $("#e").fadeIn();
+                  $("#f").fadeIn();
+                  $("#g").fadeIn();
+                  $("#h").fadeIn();
+                  $("#codigo2").fadeOut();
+                  $("#cuadroCodigo2").fadeOut();
+                  $("#codigo").fadeIn();
+                  $("#cuadroCodigo1").fadeIn();
+                  $("#cuadroCodigo1").animate({'top' : '380px'});
+                break;
+                case 7:
+                  $("#matrizB,#matrizA,#cuadroChb1,#cuadroChb2,#cuadroChb3,#cuadroChb4,#cuadroCh1,#cuadroCh2,#cuadroCh3,#cuadroCh4,#e,#f,#g,#h,#a,#b,#c,#d").fadeOut();
+                break;
+                case 8:
+                  $("#subMatrizA").fadeIn();
+                  $("#subMatrizB").fadeIn();
+                break;
+                case 9:
+                  $("#squareChsub1").fadeIn();
+                  $("#cuadroCodigo1").animate({'top' : '335px'});
+                break;
+                case 10:
+                  $("#subMatrizA, #squareChsub1").animate({'left' : '950px'});
+                break;
+                case 11:
+                  $("#squareChsub1").fadeOut();
+                  $("#squareAsubCh1, #squareAsubCh2, #squareAsubCh3, #squareAsubCh4").fadeIn();
+                  $("#codigo").fadeOut();
+                  $("#cuadroCodigo1").fadeOut();
+                  $("#codigo2").fadeIn();
+                  $("#cuadroCodigo2").fadeIn();
+                break;
+                case 12:
+                  $("#subMatrizA").animate({'left' : '100px'});
+                  $("#squareAsubCh1").animate({'left' : '100px'});
+                  $("#squareAsubCh2").animate({'left' : '140px'});
+                  $("#squareAsubCh3").animate({'left' : '140px'});
+                  $("#squareAsubCh4").animate({'left' : '100px'});
+                  $("#aa, #bb, #cc, #dd").fadeIn();
+                  $("#squareChsub2").fadeIn();
+                  $("#codigo").fadeIn();
+                  $("#cuadroCodigo1").fadeIn();
+                  $("#codigo2").fadeOut();
+                  $("#cuadroCodigo2").fadeOut();
+                  $("#cuadroCodigo1").animate({'top' : '355px'});
+                break;
+                case 13:
+                  $("#subMatrizB, #squareChsub2").animate({'left' : '950px'});
+                  $("#codigo").fadeOut();
+                  $("#cuadroCodigo1").fadeOut();
+                  $("#codigo2").fadeIn();
+                  $("#cuadroCodigo2").fadeIn();
+                break;
+                case 14:
+                  $("#squareChsub2").fadeOut();
+                  $("#squareBsubCh1, #squareBsubCh2, #squareBsubCh3, #squareBsubCh4").fadeIn();
+                break;
+                case 15:
+                  $("#subMatrizB").animate({'left' : '350px'});
+                  $("#squareBsubCh1").animate({'left' : '350px'});
+                  $("#squareBsubCh2").animate({'left' : '390px'});
+                  $("#squareBsubCh3").animate({'left' : '390px'});
+                  $("#squareBsubCh4").animate({'left' : '350px'});
+                  $("#ee, #ff, #gg, #hh").fadeIn();
+                  $("#codigo").fadeIn();
+                  $("#cuadroCodigo1").fadeIn();
+                  $("#codigo2").fadeOut();
+                  $("#cuadroCodigo2").fadeOut();
+                  $("#cuadroCodigo1").animate({'top' : '355px'});
+                break;
+                case 16:
+                  $("#subResultado").fadeIn();
+
+                  $("#squareAsubCh2, #squareAsubCh3, #squareAsubCh4").css("background-color", "#7B7D7D", "border-color", "#7B7D7D");
+                  $("#squareAsubCh2, #squareAsubCh3, #squareAsubCh4").css("border-color", "#7B7D7D");
+
+                  $("#squareBsubCh2, #squareBsubCh3, #squareBsubCh4").css("background-color", "#7B7D7D", "border-color", "#7B7D7D");
+                  $("#squareBsubCh2, #squareBsubCh3, #squareBsubCh4").css("border-color", "#7B7D7D");
+                  $("#cuadroCodigo1").animate({'top' : '565px'});
+                break;
+                case 17:
+                  $('#subResultado tr:first th:first').text('5+bg');
+                break;
+                case 18:
+                  $("#squareAsubCh2").css("background-color", "#F5C603");
+                  $("#squareAsubCh2").css("border-color", "#F55F03");
+
+                  $("#squareBsubCh4").css("background-color", "#10FC04");
+                  $("#squareBsubCh4").css("border-color", "#10FC04");
+
+                  $("#squareAsubCh1, #squareAsubCh3, #squareAsubCh4").css("background-color", "#7B7D7D");
+                  $("#squareAsubCh1, #squareAsubCh3, #squareAsubCh4").css("border-color", "#7B7D7D");
+
+                  $("#squareBsubCh1, #squareBsubCh2, #squareBsubCh3").css("background-color", "#7B7D7D");
+                  $("#squareBsubCh1, #squareBsubCh2, #squareBsubCh3").css("border-color", "#7B7D7D");
+
+                  $('#subResultado tr:first th:first').text('5+4');
+                break;
+                case 19:
+                  $("#squareAsubCh1").css("background-color", "#F5C603");
+                  $("#squareAsubCh1").css("border-color", "#F55F03");
+
+                  $("#squareBsubCh2").css("background-color", "#10FC04");
+                  $("#squareBsubCh2").css("border-color", "#10FC04");
+
+                  $("#squareAsubCh2, #squareAsubCh3, #squareAsubCh4").css("background-color", "#7B7D7D");
+                  $("#squareAsubCh2, #squareAsubCh3, #squareAsubCh4").css("border-color", "#7B7D7D");
+
+                  $("#squareBsubCh1, #squareBsubCh3, #squareBsubCh4").css("background-color", "#7B7D7D");
+                  $("#squareBsubCh1, #squareBsubCh3, #squareBsubCh4").css("border-color", "#7B7D7D");
+
+                  $("#cuadroCodigo1").animate({'top' : '585px'});
+
+                  $('#subResultado tr:first th:nth-child(2)').text('4+bh');
+                break;
+                case 20:
+                  $("#squareAsubCh2").css("background-color", "#F5C603");
+                  $("#squareAsubCh2").css("border-color", "#F55F03");
+
+                  $("#squareBsubCh3").css("background-color", "#10FC04");
+                  $("#squareBsubCh3").css("border-color", "#10FC04");
+
+                  $("#squareAsubCh1, #squareAsubCh3, #squareAsubCh4").css("background-color", "#7B7D7D");
+                  $("#squareAsubCh1, #squareAsubCh3, #squareAsubCh4").css("border-color", "#7B7D7D");
+
+                  $("#squareBsubCh1, #squareBsubCh2, #squareBsubCh4").css("background-color", "#7B7D7D");
+                  $("#squareBsubCh1, #squareBsubCh2, #squareBsubCh4").css("border-color", "#7B7D7D");
+
+                  $('#subResultado tr:first th:nth-child(2)').text('4+6');
+                break;
+                case 21:
+                  $("#squareAsubCh4").css("background-color", "#F5C603");
+                  $("#squareAsubCh4").css("border-color", "#F55F03");
+
+                  $("#squareBsubCh1").css("background-color", "#10FC04");
+                  $("#squareBsubCh1").css("border-color", "#10FC04");
+
+                  $("#squareAsubCh1, #squareAsubCh3, #squareAsubCh2").css("background-color", "#7B7D7D");
+                  $("#squareAsubCh1, #squareAsubCh3, #squareAsubCh2").css("border-color", "#7B7D7D");
+
+                  $("#squareBsubCh3, #squareBsubCh2, #squareBsubCh4").css("background-color", "#7B7D7D");
+                  $("#squareBsubCh3, #squareBsubCh2, #squareBsubCh4").css("border-color", "#7B7D7D");
+
+                  $("#cuadroCodigo1").animate({'top' : '610px'});
+
+                  $('#subResultado tr:nth-child(2) th:nth-child(1)').text('10+dg');
+                break;
+                case 22:
+                  $("#squareAsubCh3").css("background-color", "#F5C603");
+                  $("#squareAsubCh3").css("border-color", "#F55F03");
+
+                  $("#squareBsubCh4").css("background-color", "#10FC04");
+                  $("#squareBsubCh4").css("border-color", "#10FC04");
+
+                  $("#squareAsubCh1, #squareAsubCh4, #squareAsubCh2").css("background-color", "#7B7D7D");
+                  $("#squareAsubCh1, #squareAsubCh4, #squareAsubCh2").css("border-color", "#7B7D7D");
+
+                  $("#squareBsubCh3, #squareBsubCh2, #squareBsubCh1").css("background-color", "#7B7D7D");
+                  $("#squareBsubCh3, #squareBsubCh2, #squareBsubCh1").css("border-color", "#7B7D7D");
+
+                  $('#subResultado tr:nth-child(2) th:nth-child(1)').text('10+6');
+                break;
+                case 23:
+                  $("#squareAsubCh4").css("background-color", "#F5C603");
+                  $("#squareAsubCh4").css("border-color", "#F55F03");
+
+                  $("#squareBsubCh2").css("background-color", "#10FC04");
+                  $("#squareBsubCh2").css("border-color", "#10FC04");
+
+                  $("#squareAsubCh1, #squareAsubCh3, #squareAsubCh2").css("background-color", "#7B7D7D");
+                  $("#squareAsubCh1, #squareAsubCh3, #squareAsubCh2").css("border-color", "#7B7D7D");
+
+                  $("#squareBsubCh3, #squareBsubCh4, #squareBsubCh1").css("background-color", "#7B7D7D");
+                  $("#squareBsubCh3, #squareBsubCh4, #squareBsubCh1").css("border-color", "#7B7D7D");
+
+                  $("#cuadroCodigo1").animate({'top' : '630px'});
+
+                  $('#subResultado tr:nth-child(2) th:nth-child(2)').text('8+dh');
+                break;
+                case 24:
+                  $("#squareAsubCh3").css("background-color", "#F5C603");
+                  $("#squareAsubCh3").css("border-color", "#F55F03");
+
+                  $("#squareBsubCh3").css("background-color", "#10FC04");
+                  $("#squareBsubCh3").css("border-color", "#10FC04");
+
+                  $("#squareAsubCh1, #squareAsubCh4, #squareAsubCh2").css("background-color", "#018ABE");
+                  $("#squareAsubCh1, #squareAsubCh4, #squareAsubCh2").css("border-color", "#7B7D7D");
+
+                  $("#squareBsubCh2, #squareBsubCh4, #squareBsubCh1").css("background-color", "#7B7D7D");
+                  $("#squareBsubCh2, #squareBsubCh4, #squareBsubCh1").css("border-color", "#7B7D7D");
+
+                  $('#subResultado tr:nth-child(2) th:nth-child(2)').text('8+9');
+                break;
+                case 25:
+                  $("#squareAsubCh3,#squareAsubCh1, #squareAsubCh4, #squareAsubCh2").css("background-color", "#018ABE");
+                  $("#squareAsubCh3,#squareAsubCh1, #squareAsubCh4, #squareAsubCh2").css("border-color", "#F55F03");
+
+                  $("#squareBsubCh3,#squareBsubCh2, #squareBsubCh4, #squareBsubCh1").css("background-color", "#10FC04");
+                  $("#squareBsubCh3,#squareBsubCh2, #squareBsubCh4, #squareBsubCh1").css("border-color", "#10FC04");
+
+                  $('#subResultado tr:nth-child(1) th:nth-child(1)').text('9');
+                  $('#subResultado tr:nth-child(1) th:nth-child(2)').text('10');
+                  $('#subResultado tr:nth-child(2) th:nth-child(1)').text('16');
+                  $('#subResultado tr:nth-child(2) th:nth-child(2)').text('17');
+                break;
+                case 26:
+                  $("#Resultado").fadeIn();
+                  $("#subMatrizA,#subMatrizB, #squareAsubCh1, #squareAsubCh2, #squareAsubCh3, #squareAsubCh4, #squareBsubCh1, #squareBsubCh2, #squareBsubCh3, #squareBsubCh4, #aa, #bb, #cc, #dd, #ee, #ff, #gg, #hh, #subResultado").fadeOut();
+                  $("#matrizA, #matrizB,#cuadroCh1,#cuadroCh2,#cuadroCh3,#cuadroCh4,#cuadroChb1,#cuadroChb2,#cuadroChb3,#cuadroChb4").fadeIn();
+                   $("#squareChR1, #squareChR2,#squareChR3,#squareChR4").fadeIn();
+                break;
+                case 27:
+                  $("#cuadroCh1,#cuadroChb1").css("background-color", "#D30DF6");
+                  $("#cuadroCh1,#cuadroChb1").css("border-color", "#D30DF6");
+
+                  $("#cuadroCh2, #cuadroCh3, #cuadroCh4,#cuadroChb2,#cuadroChb3,#cuadroChb4").css("background-color", "#018ABE");
+                  $("#cuadroCh2, #cuadroCh3, #cuadroCh4,#cuadroChb2,#cuadroChb3,#cuadroChb4").css("border-color", "#7B7D7D");
+                  $("#cuadroCodigo1").animate({'top' : '385px'}); //ae
+                break;
+                case 28:
+                  $("#cuadroCh1").animate({'left' : '180px'});
+                  $("#cuadroCh2").animate({'left' : '100px'});
+
+                  $("#cuadroChb1").animate({'top' : '185px'});
+                  $("#cuadroChb4").animate({'top' : '90px'});
+
+                  $('#Resultado tr:nth-child(1) th:nth-child(1)').text('9+21');
+                  $('#Resultado tr:nth-child(1) th:nth-child(2)').text('10+32');
+                  $('#Resultado tr:nth-child(2) th:nth-child(1)').text('16+27');
+                  $('#Resultado tr:nth-child(2) th:nth-child(2)').text('17+41');
+
+                  $("#cuadroCodigo1").animate({'top' : '405px'}); //bg
+                break;
+                case 29:
+                  $("#cuadroCh1").animate({'left' : '100px'});
+                  $("#cuadroCh2").animate({'left' : '180px'});
+
+                  $("#cuadroChb1").animate({'top' : '90px'});
+                  $("#cuadroChb4").animate({'top' : '185px'});
+
+                  $("#cuadroChb1").animate({'left' : '430px'});
+                  $("#cuadroChb2").animate({'left' : '350px'});
+
+                  $('#Resultado tr:nth-child(1) th:nth-child(3)').text('11+??');
+                  $('#Resultado tr:nth-child(1) th:nth-child(4)').text('12+??');
+                  $('#Resultado tr:nth-child(2) th:nth-child(3)').text('18+??');
+                  $('#Resultado tr:nth-child(2) th:nth-child(4)').text('19+??');
+
+                  $("#cuadroCodigo1").animate({'top' : '425px'}); //af
+                break;
+                case 30:
+                  $("#cuadroCh1").animate({'left' : '180px'});
+                  $("#cuadroCh2").animate({'left' : '100px'});
+
+                  $("#cuadroChb1").animate({'top' : '185px'});
+                  $("#cuadroChb3").animate({'top' : '90px'});
+
+
+                  $('#Resultado tr:nth-child(1) th:nth-child(3)').text('11+43');
+                  $('#Resultado tr:nth-child(1) th:nth-child(4)').text('12+50');
+                  $('#Resultado tr:nth-child(2) th:nth-child(3)').text('18+55');
+                  $('#Resultado tr:nth-child(2) th:nth-child(4)').text('19+64');
+
+                  $("#cuadroCodigo1").animate({'top' : '448px'}); //bh
+                break;
+                case 31:
+                  $("#cuadroCh1").animate({'top' : '185px'});
+                  $("#cuadroCh1").animate({'left' : '100px'});
+                  $("#cuadroCh4").animate({'left' : '180px'});
+                  $("#cuadroCh4").animate({'top' : '90px'});
+                  
+                  $("#cuadroChb1").animate({'left' : '350px'})
+                  $("#cuadroChb1").animate({'top' : '90px'});
+                  $("#cuadroChb2").animate({'left' : '430px'});
+                  $("#cuadroChb2").animate({'top' : '185px'});
+
+
+                  $('#Resultado tr:nth-child(3) th:nth-child(1)').text('23+??');
+                  $('#Resultado tr:nth-child(3) th:nth-child(2)').text('24+??');
+                  $('#Resultado tr:nth-child(4) th:nth-child(1)').text('30+??');
+                  $('#Resultado tr:nth-child(4) th:nth-child(2)').text('31+??');
+
+                  $("#cuadroCodigo1").animate({'top' : '470px'}); //ce
+                break;
+                case 32:
+                  $("#cuadroCh1").animate({'left' : '180px'});
+                  $("#cuadroCh3").animate({'left' : '100px'});
+                  $("#cuadroCh3").animate({'top' : '185px'});
+                  
+                  $("#cuadroChb1").animate({'top' : '185px'});
+                  $("#cuadroChb4").animate({'top' : '90px'});
+
+
+                  $('#Resultado tr:nth-child(3) th:nth-child(1)').text('23+27');
+                  $('#Resultado tr:nth-child(3) th:nth-child(2)').text('24+50');
+                  $('#Resultado tr:nth-child(4) th:nth-child(1)').text('30+32');
+                  $('#Resultado tr:nth-child(4) th:nth-child(2)').text('31+59');
+
+                  $("#cuadroCodigo1").animate({'top' : '498px'}); //dg
+                break;
+                case 33:
+                  $("#cuadroCh1").animate({'left' : '100px'});
+                  $("#cuadroCh3").animate({'left' : '180px'});
+                  
+                  
+                  $("#cuadroChb1").animate({'top' : '90px'});
+                  $("#cuadroChb1").animate({'left' : '430px'});
+                  $("#cuadroChb3").animate({'top' : '185px'});
+                  $("#cuadroChb3").animate({'left' : '350px'});
+
+
+                  $('#Resultado tr:nth-child(3) th:nth-child(3)').text('25+??');
+                  $('#Resultado tr:nth-child(3) th:nth-child(4)').text('26+??');
+                  $('#Resultado tr:nth-child(4) th:nth-child(3)').text('32+??');
+                  $('#Resultado tr:nth-child(4) th:nth-child(4)').text('33+??');
+
+                  $("#cuadroCodigo1").animate({'top' : '518px'}); //cf
+                break;
+                case 34:
+                  $("#cuadroCh1").animate({'left' : '180px'});
+                  $("#cuadroCh3").animate({'left' : '100px'});
+                  
+                  
+                  $("#cuadroChb1").animate({'top' : '185px'});
+                  $("#cuadroChb2").animate({'top' : '90px'});
+
+                  $('#Resultado tr:nth-child(3) th:nth-child(3)').text('25+67');
+                  $('#Resultado tr:nth-child(3) th:nth-child(4)').text('26+78');
+                  $('#Resultado tr:nth-child(4) th:nth-child(3)').text('32+79');
+                  $('#Resultado tr:nth-child(4) th:nth-child(4)').text('33+92');
+
+                  $("#cuadroCodigo1").animate({'top' : '540px'}); //dh
+                break;
+                case 35:
+
+                  $('#Resultado tr:nth-child(1) th:nth-child(1)').text('30');
+                  $('#Resultado tr:nth-child(1) th:nth-child(2)').text('42');
+                  $('#Resultado tr:nth-child(2) th:nth-child(1)').text('43');
+                  $('#Resultado tr:nth-child(2) th:nth-child(2)').text('58');
+
+                  $('#Resultado tr:nth-child(1) th:nth-child(3)').text('54');
+                  $('#Resultado tr:nth-child(1) th:nth-child(4)').text('62');
+                  $('#Resultado tr:nth-child(2) th:nth-child(3)').text('73');
+                  $('#Resultado tr:nth-child(2) th:nth-child(4)').text('83');
+
+                  $('#Resultado tr:nth-child(3) th:nth-child(1)').text('50');
+                  $('#Resultado tr:nth-child(3) th:nth-child(2)').text('74');
+                  $('#Resultado tr:nth-child(4) th:nth-child(1)').text('62');
+                  $('#Resultado tr:nth-child(4) th:nth-child(2)').text('90');
+
+                  $('#Resultado tr:nth-child(3) th:nth-child(3)').text('92');
+                  $('#Resultado tr:nth-child(3) th:nth-child(4)').text('104');
+                  $('#Resultado tr:nth-child(4) th:nth-child(3)').text('111');
+                  $('#Resultado tr:nth-child(4) th:nth-child(4)').text('125');
+
+                  $("#squareChR1").fadeOut();
+                  $("#squareChR2").fadeOut();
+                  $("#squareChR3").fadeOut();
+                  $("#squareChR4").fadeOut();
+
+                  $("#squareChR1f").fadeIn();
+                  $("#squareChR2f").fadeIn();
+                  $("#squareChR3f").fadeIn();
+                  $("#squareChR4f").fadeIn();
+
+                  $("#cuadroCodigo1").fadeOut();
+                  $("#cuadroCodigoFinal").fadeIn();
+                break;
+              }
+
+              paso = paso + 1;
+            });
+
+
+          });
+       
+
+        </script>
+
+</body>
+</html>
