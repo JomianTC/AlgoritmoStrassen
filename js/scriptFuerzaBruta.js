@@ -61,6 +61,7 @@ function crearMatrices (){
 		for(var i = 0; i < entrada.value; i++){
 
 			var divA = document.createElement("div");
+			divA.className = "divCentrar";
 			selectHTML.appendChild(divA);
 
 			for (var j = 0; j < entrada.value; j++){
@@ -88,6 +89,7 @@ function crearMatrices (){
 		for(var i = 0; i < entrada.value; i++){
 
 			var divB = document.createElement("div");
+			divB.className = "divCentrar";
 			selectHTML.appendChild(divB);
 
 			for (var j = 0; j < entrada.value; j++){
@@ -201,6 +203,7 @@ function animacion (){
 		for(var i = 0; i < entrada.value; i++){
 
 			var divR = document.createElement("div");
+			divR.className = "divCentrar";
 			selectHTML.appendChild(divR);
 
 			for (var j = 0; j < entrada.value; j++){
