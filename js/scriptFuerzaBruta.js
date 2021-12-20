@@ -19,7 +19,6 @@ var matrizBInt = [];
 var matrizRInt = [];
 
 var operacionTexto = [];
-var codigoTexto = [];
 
 var textoBoton3;
 
@@ -62,7 +61,6 @@ function crearMatrices (){
 		for(var i = 0; i < entrada.value; i++){
 
 			var divA = document.createElement("div");
-			divA.className = "divCentrar";
 			selectHTML.appendChild(divA);
 
 			for (var j = 0; j < entrada.value; j++){
@@ -90,7 +88,6 @@ function crearMatrices (){
 		for(var i = 0; i < entrada.value; i++){
 
 			var divB = document.createElement("div");
-			divB.className = "divCentrar";
 			selectHTML.appendChild(divB);
 
 			for (var j = 0; j < entrada.value; j++){
@@ -173,8 +170,8 @@ function animacion (){
 				"C[i,j] = C[i,j] + A[i,k]*B[k,j];"
 			]
 
-			codigoTexto[i] = document.createTextNode(textCode[i]);
-			pseudo.appendChild(codigoTexto[i]);
+			var codigo = document.createTextNode(textCode[i]);
+			pseudo.appendChild(codigo);
 			pseudo.appendChild(document.createElement("br"));
 
 		}
@@ -204,7 +201,6 @@ function animacion (){
 		for(var i = 0; i < entrada.value; i++){
 
 			var divR = document.createElement("div");
-			divR.className = "divCentrar";
 			selectHTML.appendChild(divR);
 
 			for (var j = 0; j < entrada.value; j++){
@@ -245,7 +241,7 @@ var tiempo = 20;
 
 function creacion (){
 
-	if (ocultar) { 
+	if (ocultar) {
 
 		var ocultacion;
 
@@ -276,8 +272,6 @@ function creacion (){
 				matrizR[o][p].value = "";
 			}
 		}
-
-		denuvo = false;
 	}
 
 	var selectHTML = document.getElementById("OP" + f + "");
@@ -330,10 +324,6 @@ function creacion (){
 	else{
 
 		operacionTexto[f].nodeValue = `matrizA[${x}][${z}] * matrizB[${z}][${y}] = ` + matrizAInt[x][z] + " * " + matrizBInt[z][y] + " = " + matrizAInt[x][z]*matrizBInt[z][y] + "";
-		codigoTexto[0].nodeValue = `for i = ${x} to ${entrada.value} do`;
-		codigoTexto[1].nodeValue = `for j = ${y} to ${entrada.value} do`;
-		codigoTexto[2].nodeValue = `for k = ${z} to ${entrada.value} do`;
-		codigoTexto[3].nodeValue = `C[${x},${y}] = C[${x},${y}] + A[${x},${z}]*B[${z},${y}]`;
 		matrizA[x][z].style.background = oscuro;
 		matrizB[z][y].style.background = oscuro;
 
@@ -345,6 +335,18 @@ function creacion (){
 		z++;
 	}
 }
+
+var delay = ( function() {
+
+    var timer = 0;
+
+    return function(callback, ms) {
+
+        clearTimeout (timer);
+
+        timer = setTimeout(callback, ms);
+    };
+})();
 
 function comprobacion (matrizAInt, matrizBInt){
 
@@ -385,7 +387,69 @@ function unfade(element, time) {
     }, time);
 }
 
-function page(){
+function myLoopX(x, y, tiempo){
+	
+	setTimeout(function() {
 
+		matrizA[x][y].style.background = "var(--stratos)";
+    
+    	if (y < entrada.value){
+      		
+      		myLoopX(x, y+1);
+    	}
+  	}, tiempo)
+}
+
+function myLoopY(x, y, tiempo){
+
+	setTimeout(function(){
+
+		matrizB[x][y].style.background = "var(--stratos)";
+
+		if (x < entrada.value) {
+
+			myLoopY(x+1, y);
+		}
+	}, tiempo)
+}
+
+function page(){
     window.location.reload();
 } 
+
+
+
+/*Multiplicacion de matrices
+
+for (var x = 0; x < entrada.value; x++){
+		for (var y = 0; y < entrada.value; y++){
+			for (var z = 0; z < entrada.value; z++){
+				matrizR[x][y] = matrizR[x][y] + (matrizA[x][z] * matrizB[z][y]);
+			}
+		}
+	}
+
+unfade(selectHTML, 50);
+		delay(function(){
+    		wait(3000);
+		}, 3000 );
+
+		var x = 0;
+		var y = 0;
+
+		myLoopX(x, y);
+		myLoopY(x, y);
+
+		selectHTML = document.getElementById("Operaciones");
+		var op = document.createElement("p");
+		op.className = "codigoFacilito";
+		op.id = "cambiante";
+
+		selectHTML.appendChild(op);
+
+		var opeText = "";
+
+		var opePantalla = document.createTextNode(opeText);
+		op.appendChild(opeText);
+
+*/

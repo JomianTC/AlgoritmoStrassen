@@ -78,11 +78,6 @@ h1, h2{
     justify-content: center;
 }
 
-.divCentrar{
-
-    text-align: center;
-}
-
 input {
 
     border: solid var(--stratos) 0.1px;
@@ -140,7 +135,7 @@ input {
     width: 130px;
     height: 50px;
 
-    margin: 15px 10px;
+    margin: 30px 10px;
 
     transition: ease-out 0.3s;
 }
@@ -157,7 +152,7 @@ input {
     align-items: center;
     justify-content: center;
 
-    margin-top: 40px;
+    margin-top: 50px;
     margin-bottom: 40px;
 }
 
@@ -197,156 +192,4 @@ input {
 #OP0, #OP1, #OP2, #OP3, #OP4, #OP5, #OP6, #OP7{
 
     opacity: 0;
-}
-
-#responde{
-
-    display: flex;
-}
-
-@media (max-width: 1130px){
-
-    h1, h2{
-
-        font-size: 150%;
-    }
-
-    input {
-
-        font-size: 120%;
-
-        width: 35px;
-        height: 35px;
-
-        align-content: center;
-        justify-content: center;
-
-    }
-
-    .codigoFacilito{
-
-        font-family: QuicksandBold;
-        font-size: 100%;
-
-        color: var(--Botticelli);
-    }
-
-    .oper{
-
-        font-size: 80%;
-    }
-
-    #pseudocodigo, #matrisR{
-
-        opacity: 0;
-
-        margin: 0px 40px;
-    }
-
-    #pseudocodigo{
-
-        display: flex;
-        flex-direction: column;
-
-        justify-content: center;
-    }
-
-    #operaciones{
-
-        margin: 3% 40px;
-    }
-
-    #divCosas{
-
-        display: flex;
-        flex-direction: column;
-
-        align-items: center;
-        justify-content: center;
-
-        margin-top: 20px;
-        margin-bottom: 20px;
-    }
-
-    #responde{
-
-        display: flex;
-    }
-
-}
-
-@media (max-width: 640px){
-
-    h1, h2{
-
-        font-size: 150%;
-    }
-
-    input {
-
-        font-size: 120%;
-
-        width: 25px;
-        height: 25px;
-
-        align-content: center;
-        justify-content: center;
-
-    }
-
-    .codigoFacilito{
-
-        font-family: QuicksandBold;
-        font-size: 100%;
-
-        color: var(--Botticelli);
-    }
-
-    #C3{
-
-        font-size: 58%;
-    }
-
-    .oper{
-
-        font-size: 70%;
-    }
-
-    #pseudocodigo, #matrisR{
-
-        opacity: 0;
-
-        margin: 0px 40px;
-    }
-
-    #pseudocodigo{
-
-        display: flex;
-        flex-direction: column;
-
-        justify-content: center;
-    }
-
-    #operaciones{
-
-        margin: 3% 40px;
-    }
-
-    #divCosas{
-
-        display: flex;
-        flex-direction: column;
-
-        align-items: center;
-        justify-content: center;
-
-        margin-top: 30px;
-        margin-bottom: 20px;
-    }
-
-    #responde{
-
-        display: flex;
-    }
-
-}
+} 

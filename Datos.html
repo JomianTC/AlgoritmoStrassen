@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>DDRM</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa:700" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/estilosDatos.css">
+</head>
+<body>
+    <div id="loading">
+        <div id="spinner"></div>
+    </div>
+    <div id="particles-js"></div>
+    <div id="box">
+        <div class="box1 onlywide animated bounceOutLeft" style="animation-delay:1.7s;"></div>
+        <div class="box2 onlywide animated bounceOutLeft" style="animation-delay:1.8s;"></div>
+        <div class="box2 onlywide animated bounceOutLeft" style="animation-delay:1.9s;"></div>
+        <div class="box2 animated bounceOutRight" style="animation-delay:1.9s;"></div>
+        <div class="box2 onlywide animated bounceOutRight" style="animation-delay:1.8s;"></div>
+        <div class="box2 onlywide animated bounceOutRight" style="animation-delay:1.7s;"></div>
+    </div>
+    <a id="about" onclick="showbruta()" class="animated fadeIn" style="animation-delay:2.2s;">Fuerza Bruta</a>
+    <a id="work" onclick="showalgo()" class="animated fadeIn" style="animation-delay:2.2s;">Algoritmo</a>
+    <a id="contact" onclick="showequipo()" class="animated fadeIn" style="animation-delay:2.2s;">Equipo</a>
+    <div id="middle" class="animated slideInDown" style="animation-delay:2.0s;">
+        <h1>DDRM</h1>
+        <h2>El Algoritmo de Schonhage-Strassen</h2>
+        <div id="menu">
+            <a onclick="showbruta()">Fuerza Bruta</a>
+            <a onclick="showalgo()">Algoritmo</a>
+            <a onclick="showequipo()">Equipo</a>
+        </div>
+        
+    </div>
+    <div id="work_container" class="container">
+        <div onclick="closealgo()"><i class="fas fa-angle-right"></i></div>
+        <h1>El Algoritmo de Schonhage-Strassen</h1>
+        <section>
+            <h2>Historia</h2>
+            <p>
+                El algoritmo de Strassen publicado en 1969 fue el primer algoritmo en demostrar que el algoritmo en cota O(n^3) no era óptimo, sus investigaciones lo llevaron a un algoritmo capas de reducir esta cota de complejidad de este factor cúbico a un factor de O(n^2.8074).
+            </p>
+			<p>
+				En años posteriores se logró junto con el algoritmo de strassen crear el algoritmo de Schönhage-Strassen un algoritmo más elaborado que hace uso de otros fundamentos matemáticos usados en los algoritmos de Karatsuba y la transformada rápida de Fourier, este algoritmo es más pensado para matrices de gran tamaño con valores de igual gran tamaño que solo variables long long pueden almacenar.
+			</p>
+			<br />
+			<h2>¿Cómo funciona?</h2>
+            <p>
+                El algoritmo de strassen se basa principalmente en tener matrices cuadradas de 2n e ir subdividiendo esta matriz en matrices mas pequeñas.
+            </p>
+			<p align="center">
+				<img src="Recursos/Img/Matriz1.png">
+			</p>
+			<p>
+                El algoritmo de strassen es util para matrices muy grandes.
+            </p>
+			<br />
+			<p align="center">
+				<img src="Recursos/Img/Matriz2.png">
+			</p>
+			<br />
+			<p align="center">
+				<img src="Recursos/Img/Matriz3.png">
+			</p>
+			<br />
+			<form action="strassenDC.html" method="get">
+            <button type="submit" class="btn_one">Ver Animación</button>
+            </form>
+        </section>
+    </div>
+    <div id="about_container" class="container">
+            <div onclick="closebruta()"><i class="fas fa-angle-left"></i></div>
+            <h1>Multiplicación de Matrices por fuerza Bruta</h1>
+        <section>
+            <h2>Planteamiento</h2>
+            <p>
+                Definimos a una matriz como un conjunto de datos (en este caso números) ordenados en filas y columnas, entre matrices se pueden llevar acabo operaciones básicas y algunas exclusivas de estas, entre las operaciones básicas tenemos por ejemplo: suma, resta, multiplicación, división.
+            </p>
+			<p>
+				Nosotros nos enfocaremos en especial a la operación de producto entre dos matrices de nxm y cual es el procedimiento que se tiene que seguir para poder obtener la matriz resultante.
+			</p>
+			<br />
+			<h2>Multiplicación Básica</h2>
+            <p>
+                La finalidad de la multiplicación de dos matrices es unificar las matrices en una sola mediante la multiplicación y la suma de los elementos de las filas y columnas de las matrices de origen teniendo en cuenta el orden de los factores.
+            </p>
+			<p align="center">
+				<img src="Recursos/Img/MatrizFB1.png">
+			</p>
+			<br />
+			<p align="center">
+				<img src="Recursos/Img/MatrizFB2.png">
+			</p>
+			<br />
+			<form action="fbruta.html" method="get">
+            <button type="submit" class="btn_one">Ver Animación</button>
+            </form>
+        </section>
+        </div>
+		<div id="contact_container" class="container">
+            <div onclick="closeequipo()"><i class="fas fa-angle-down"></i></div>
+            <h1>Equipo</h1>
+            <section>
+                <h2>DDRM</h2>
+                <p>
+                    <div id="used">
+					<div><i class="fas fa-circle"></i>&nbsp;Torres Carrillo Josehf Miguel Angel</div>
+					<br />
+					<div><i class="fas fa-circle"></i>&nbsp;Tovar Jacuinde Rodrigo</div>
+					<br />
+					<div><i class="fas fa-circle"></i>&nbsp;Zuñiga Rodriguez Diego</div>
+					<br />
+					<div><i class="fas fa-circle"></i>&nbsp;Torres Jiménez Diego Antonio</div>
+					<br />
+            </div> 
+			<p align="center">
+				<img class="foto" src="Recursos/Img/Equipo.png">
+			</p>
+			
+                </p>
+            </section>
+        </div>
+        <div id="footer">
+            Proyecto Final de <br> <a href="https://eafranco.eakdemy.com/">Análisis de Algoritmos</a>
+        </div>
+    <script src="js/datos.js" type="text/javascript"></script>
+    <script src="js/particulas.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
