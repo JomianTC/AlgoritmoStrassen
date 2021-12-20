@@ -121,3 +121,40 @@ h3{
 	box-shadow: inset 200px 0 0 0 var(--Mglory);
 	color: var(--stratos);
 	cursor: pointer;}
+
+@media (max-width: 700px){
+
+	h1{
+
+		font-size: 300%;
+
+		padding: 2% 0%;
+	}
+
+	h2{
+
+		font-size: 300%;
+	}
+
+	h3{
+
+		font-size: 150%;
+	}
+
+	#btn1, #btn2{
+
+		font-size: 90%;
+
+		padding: 20px 10px;
+	}
+}
+
+@media (max-width: 510px){
+
+	#btn1, #btn2{
+
+		font-size: 50%;
+
+		padding: 20px 5px;
+	}
+}
