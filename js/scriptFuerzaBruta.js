@@ -115,7 +115,23 @@ function crearMatrices (){
 		boton2.appendChild(document.createTextNode("Iniciar"));
 		selectHTML.appendChild(boton2);
 
+		var boton21 = document.createElement("button");
+		boton21.id = "boton2";
+		boton21.setAttribute("onClick", "autofill()");
+		boton21.appendChild(document.createTextNode("Llenar"));
+		selectHTML.appendChild(boton21);
+
 		unfade(selectHTML, 20);
+	}
+}
+
+function autofill(){
+
+	for (var x = 0; x < entrada.value; x++){
+		for (var y = 0; y < entrada.value; y++){
+			matrizA[x][y].value = Math.floor(Math.random() * 51);;
+			matrizB[x][y].value = Math.floor(Math.random() * 51);;
+		}
 	}
 }
 
